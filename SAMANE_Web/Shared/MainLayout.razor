@@ -1,0 +1,50 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>SAMANE_Web</PageTitle>
+
+<nav class="cnav">
+    <div class="logo">
+    <h1> Logo </h1>
+        <button class="toggle-btn" @onclick="collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </div>
+
+    <div>
+
+    <ul class="cnavLinks" style=@display> 
+
+
+        <li class="active"> <a href="#"> Home </a> </li>
+        <li> <a href="#"> Cars </a> </li>
+        <li>  <a href="#"> List </a> </li>
+        <li> <a href="#"> Calculator </a> </li>
+        <li> <a href="#"> Promotions </a> </li>
+        
+    </ul>
+
+        
+    </div>
+    
+
+</nav>
+
+            @Body
+      
+@code{
+    string display ;
+   
+    public void collapse()
+    {
+        if (display == "margin-top:0")
+        {
+            display = "";
+        }
+        else
+        {
+             display = "margin-top:0";
+        }
+       
+    }
+ }
