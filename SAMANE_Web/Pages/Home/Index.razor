@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject AppDbContext context
 
 <PageTitle>Home</PageTitle>
 
@@ -6,4 +7,17 @@
 <SubHeroComponent></SubHeroComponent>
 <CarsHeaderComponent></CarsHeaderComponent>
 
-<CarsListComponent></CarsListComponent>
+<CarsListComponent cars="@cars"></CarsListComponent>
+
+@code{
+    List<Carr> cars = new List<Carr>();
+
+    protected override async Task OnInitializedAsync()
+    {
+         cars = await context
+      .Cars.Include(c => c.CarType)
+      .Include(c => c.CarModel)
+      .Where(x => x.car_year == 2020)
+      .Take(2).ToListAsync();
+    }
+}

@@ -1,0 +1,123 @@
+﻿
+
+@inject DataService<CarModel> carModelService
+@inject DataService<Carr> carsService
+
+<div class="container serach mb-3" dir="rtl" style="max-width:1000px;">
+
+    <div class="search-list">
+
+      
+
+
+        <div>
+        <span for="type"> Kind</span>
+        <select>
+            <option value="1"> Small </option>
+            <option value="1"> Big </option>
+            <option value="1"> familly </option>
+        </select>
+        </div>
+
+        <div>
+            <span for="type"> النوع</span>
+            <select id="type"  @onchange="OnTypeChange">
+                <option> اختر النوع</option>
+
+
+           
+
+                @foreach (var item in carModelData)
+                {
+                    <option value="@item.Id"> @item.Value </option>
+                }
+            </select>
+
+         
+        </div>
+
+
+        <div>
+            <span for="type"> الموديل</span>
+
+            <select id="model">
+                <option> اختر الموديل</option>
+                @if (carTypeData != null)
+                {
+                    foreach (var item in carTypeData)
+                    {
+                        <option value="@item.Id"> @item.Value </option>
+                    }
+                }
+                
+            </select>
+        </div>
+
+        <div>
+            <span for="type"> Year</span>
+            <select>
+                <option> اختر السنه</option>
+                @if (cars != null)
+                {
+                    foreach (var item in cars)
+                    {
+                        <option value="@item.Id"> @item.Value </option>
+                    }
+                }
+            </select>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+@code {
+
+   
+
+    [Parameter]
+    public string SelectedType { get; set; }
+
+    [Parameter]
+    public EventCallback<ChangeEventArgs> OnTypeChange { get; set; }
+
+    [Parameter]
+    public List<DropDownDTO> carTypeData { get; set; }
+
+
+    List<DropDownDTO> carModelData;
+    List<DropDownDTO> cars;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        //get all car models
+        carModelData = carModelService.GetDropDownList<DropDownDTO>(x => new DropDownDTO { Id = x.carmod_id, Value = x.carmod_value });
+
+        //get all cars YEARS
+        cars = carsService.GetDropDownList<DropDownDTO>(x => new DropDownDTO { Id = x.car_year, Value = x.car_year.ToString() })
+        .GroupBy(c=>c.Id)
+        .Select(x=> new DropDownDTO{ Id=x.Key,Value=x.Key.ToString() } ).ToList();
+
+       
+    }
+
+
+
+    void OnYearChange(ChangeEventArgs e)
+    {
+        string optionsHtml = string.Join(Environment.NewLine, carModelData.Select(item =>
+    $"<option value=\"{item.Id}\">{item.Value}</option>"));
+
+        carModelData.Select(item =>
+        {
+          return  "<option value=" + item.Id + ">" + item.Value + "</option>";
+        });
+    }
+
+
+   
+}

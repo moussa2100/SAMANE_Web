@@ -1,17 +1,17 @@
 ﻿<div class="car-card">
 
-    <p> تويوتا ياريس </p>
+    <p> @($"{carModel} {carType}" ) </p>
 
     <div>
-        <img src="~/Logo.svg" />
+        <img src="/img/cars/car.svg" style="width:100%; height:auto;"  />
     </div>
-    <p> 100 ريال / اليوم </p>
-    <p> تشمل ضريبه القيمة المضافة </p>
+    <p> @dayPrice ريال / اليوم </p>
+    <p style="font-size:.6rem;"> تشمل ضريبه القيمة المضافة </p>
 
     <div class="car-card-btn">
 
-      <ButtonUI text="احجز الان">  </ButtonUI>
-      <ButtonUI text="اضافة للمفضلة"> </ButtonUI>
+      <a class="btn-ui" > احجز   </a>
+        <a class="btn-ui"> <span> <i class="bi bi-heart"></i> </span>   المفضلة </a>
 
     </div>
 
@@ -19,4 +19,12 @@
 
 @code {
 
+    [Parameter]
+    public double dayPrice { get; set; }
+
+    [Parameter]
+    public string carModel { get; set; }
+
+    [Parameter]
+    public string carType { get; set; }
 }

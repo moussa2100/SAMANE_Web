@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using SAMANE_Web.Areas.Identity;
 using SAMANE_Web.Data;
+using SAMANE_Web.Service;
+using WebApplication1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddScoped(typeof(DataService<>));
+
 
 var app = builder.Build();
 
