@@ -1,0 +1,22 @@
+﻿<div class="navbar_account">
+
+    <div class="btn_toggle">
+
+        <a @onclick="collapse" class="a_tag" style="color:var(--main-color);">
+            <i class="bi bi-list" style=" font-size:2.5rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="navbar_account_pic">
+        <a href="#" class="a_tag">
+            <i class="bi bi-person-fill" style="font-size:2rem;"></i>
+        </a>
+    </div>
+
+</div>
+
+@code{
+    [Parameter]
+    public EventCallback collapse { get; set; }
+}

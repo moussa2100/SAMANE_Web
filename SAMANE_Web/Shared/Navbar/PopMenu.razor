@@ -1,0 +1,27 @@
+﻿
+
+<div class="navbar_mobile_menu" style="@Style">
+    <div style="position:absolute;top:2rem;left:2rem;">
+
+        <a class="icon_btn" @onclick="collapse"><i class="bi bi-x-lg"></i></a>
+    </div>
+    <ul style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <li> <NavLink href="#"> الرئيسية </NavLink> </li>
+        <li> <NavLink href="/cars"> السيارات </NavLink> </li>
+        <li> <NavLink href="/promo"> إدارة الحجز </NavLink> </li>
+        <li> <NavLink href="/calc"> الحاسبة </NavLink> </li>
+        <li> <NavLink href="/callUs"> اتصل بنا </NavLink> </li>
+        <li style="background-color:var(--main-color); border-radius:50px;width:100px; height:30px;display:flex;align-items:center;justify-content:center;padding:10px;">
+            <NavLink href="/account" style="color:var(--light-color);"> حسابي </NavLink>
+        </li>
+
+    </ul>
+</div>
+
+@code{
+    [Parameter]
+    public EventCallback collapse { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
+}

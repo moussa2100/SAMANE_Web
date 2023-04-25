@@ -1,0 +1,23 @@
+﻿<PopMenu collapse="@collapse" Style="@Style"> </PopMenu>
+
+<div class="container">
+
+
+    <nav class="navbar_div" dir="rtl">
+         <LogoComp> </LogoComp>
+         <NavbarList></NavbarList>
+         <AccountComp collapse="@collapse"> </AccountComp>
+    </nav>
+
+</div>
+
+@code {
+    public string Style { get; set; } = "";
+
+    public void collapse()
+    {
+        Style = Style == "display: flex ;" ? "display:none;" : "display: flex ;";
+    }
+
+
+ }
